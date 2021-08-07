@@ -12,7 +12,7 @@ namespace SignInSample {
         public static SigninSampleScript Instance { get; set; }
         public Text statusText;
 
-    private string webClientId = "484090280329-88r6h5q67odjudka6l7gc0thkd4c6sp7.apps.googleusercontent.com";
+    private string webClientId = "";
 
     private GoogleSignInConfiguration configuration;
         public Uri ImageUri;
