@@ -62,7 +62,7 @@ public class DBManager : MonoBehaviour
             onCallback.Invoke(dataSnapshot.Value.ToString());
         }
     } 
-    public IEnumerator FriendList()
+    public IEnumerator FriendList(Action<string> onCallback)
     {
         var userNameData = databaseReference.Child("User").Child(AuthControl.instance.Name).Child("FriendLists").GetValueAsync();
         yield return new WaitUntil(predicate: () => userNameData.IsCompleted);
@@ -74,9 +74,9 @@ public class DBManager : MonoBehaviour
             {
                 foreach (var childSnapshot in dataSnapshot.Children)
                 {
-                    var Friendist = childSnapshot.Value.ToString();
+                    onCallback.Invoke(childSnapshot.Value.ToString());
 
-                    Debug.Log(Friendist + "LLLLLLLLLLLLLLL");/////////////>>>>>>>>>>>>>>>>>>>Get friendList Here<<<<<<<<<<<<<<<<<<<<
+                   // Debug.Log(frndlist + "LLLLLLLLLLLLLLL");/////////////>>>>>>>>>>>>>>>>>>>Get friendList Here<<<<<<<<<<<<<<<<<<<<
                     //text.text = childSnapshot.ToString();
 
                 }
@@ -90,7 +90,10 @@ public class DBManager : MonoBehaviour
 
             Debug.Log(name + " USERNAME");
         }));
-        StartCoroutine(FriendList());
+        StartCoroutine(FriendList((string friendlist) => {
+
+            Debug.Log(friendlist + " Frnds");
+        }));
     }
 }
 
