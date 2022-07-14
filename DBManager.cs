@@ -95,5 +95,10 @@ public class DBManager : MonoBehaviour
             Debug.Log(friendlist + " Frnds");
         }));
     }
+     public void UpdateFrndList()
+    {
+        var userNameData = databaseReference.Child("User").Child(AuthControl.instance.Name).Child("FriendLists").SetValueAsync(FrndList);
+
+    }
 }
 
